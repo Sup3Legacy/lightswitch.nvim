@@ -1,49 +1,45 @@
-# nvim-lua-plugin-template
+# Lightswitch.nvim
 
-This repository is a template for Neovim plugins written in Lua.
+This is a simple plugin for switch between dark- and lightmode `colorscheme`s.
 
-The intention is that you use this template to create a new repository where you then adapt this readme and add your plugin code.
-The template includes the following:
+# Using Lightswitch.nvim
 
-- GitHub workflows to run linters and tests
-- Minimal test setup
-- EditorConfig
-- A .luacheckrc
+## Prerequesites
 
+Neovim v>=`7.0`
 
-To get started writing a Lua plugin, I recommend reading the [nvim-lua-guide][nvim-lua-guide].
+## Install
 
-## Scope
+This can be installed using any package manager for Neovim. 
 
-Anything that the majority of plugin authors will want to have is in scope of
-this starter template. Anything that is controversial is out-of-scope.
+For example with `packer`:
 
----
-
-
-The remainder of the README is text that can be preserved in your plugin:
-
----
-
-
-## Development
-
-### Run tests
-
-
-Running tests requires [plenary.nvim][plenary] to be checked out in the parent directory of *this* repository.
-You can then run:
-
-```bash
-nvim --headless --noplugin -u tests/minimal.vim -c "PlenaryBustedDirectory tests/ {minimal_init = 'tests/minimal.vim'}"
+```lua
+use 'Sup3Legacy/lightswitch.nvim'
 ```
 
-Or if you want to run a single test file:
+## Configuration
 
-```bash
-nvim --headless --noplugin -u tests/minimal.vim -c "PlenaryBustedDirectory tests/path_to_file.lua {minimal_init = 'tests/minimal.vim'}"
+Setup the plugin using
+
+```lua
+require('lightswitch').setup(
+    {
+        -- Required arguments
+        light = [[ Your light theme ]],
+        dark = [[ Your dark theme ]],
+
+        -- Optional argument with default value
+        -- Whether the theme should be set by default to dark
+        default = true
+    }
+)
 ```
 
+## Commands
 
-[nvim-lua-guide]: https://github.com/nanotee/nvim-lua-guide
-[plenary]: https://github.com/nvim-lua/plenary.nvim
+`lightswitch.nvim` defines one command: `:LightSwitch`, which switches the theme.
+
+## Indicator
+
+`require('lightswitch').indicator` is a function returning a string representing the currently used theme, for use in e.g. `lualine`.
